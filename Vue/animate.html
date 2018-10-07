@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css动画原理</title>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="animate.css" type="text/css">
+    <style>
+        .v-enter,.v-leave-to{
+            opacity:0;
+        }
+        .v-enter-active,.v-leave-active{
+            transition:opacity 3s;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <transition
+        enter-active-class="animated swing v-enter-active"
+        leave-active-class="animated zoomOut v-leave-active"
+        appear
+        appear-active-class="animated swing">
+            <div v-if="show">hello world</div>
+        </transition>
+
+        <button @click="handleClick">点击</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                show:true
+            },
+            methods:{
+                handleClick:function () {
+                    this.show=!this.show;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

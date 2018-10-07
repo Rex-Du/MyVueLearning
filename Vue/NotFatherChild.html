@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child content="duqing"></child>
+        <child content="lifan"></child>
+    </div>
+    <script>
+        Vue.prototype.bus = new Vue();
+        var child={
+            props:['content'],
+            data:function(){
+                return {
+                    selfcontent:this.content
+                }
+            },
+            template:'<div @click="handleclick">{{selfcontent}}</div>',
+            methods:{
+                handleclick:function () {
+                    this.bus.$emit('change', this.selfcontent)
+                }
+            },
+            mounted:function () {
+                var _this = this;
+                this.bus.$on('change', function (msg) {
+                    _this.selfcontent = msg
+                })
+            }
+        }
+        var vm = new Vue({
+            el:'#app',
+            components:{
+                child:child
+            }
+        })
+    </script>
+</body>
+</html>

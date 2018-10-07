@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js" type="application/javascript"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{message}}</div>
+        <item></item>
+    </div>
+    <script type="application/javascript">
+        Vue.component('item', {
+            template: '<div>hello vue</div>'
+        });
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                message:'duqing'
+            }
+        })
+
+    </script>
+</body>
+
+</html>
